@@ -1,5 +1,5 @@
 name: scalafmt-native-action
-description: GitHub action to install scalafmt-native.
+description: GitHub action to run scalafmt-native.
 author: jrouly
 inputs:
   scalafmt-version:
