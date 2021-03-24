@@ -109,8 +109,6 @@ exports.scalafmt = scalafmt;
 function setup() {
     return __awaiter(this, void 0, void 0, function* () {
         core.startGroup(`Setup`);
-        core.exportVariable('CI', 'true');
-        core.addPath(bin);
         yield exec(`mkdir -p ${bin}`);
         core.endGroup();
     });
@@ -120,11 +118,8 @@ function install(version) {
         core.startGroup(`Install scalafmt-native:${version}`);
         const installerUrl = 'https://raw.githubusercontent.com/scalameta/scalafmt/master/bin/install-scalafmt-native.sh';
         const cmd = `curl -sL ${installerUrl} | bash -sv -- ${version} ${scalafmtPath}`;
-        const { stdout, stderr } = yield exec(cmd);
-        if (stdout.trim())
-            core.info(stdout);
-        if (stderr.trim())
-            core.error(stderr);
+        const { stderr } = yield exec(cmd);
+        core.info(stderr);
         core.endGroup();
     });
 }
@@ -133,6 +128,7 @@ function execute(args) {
         core.startGroup(`scalafmt-native ${args}`);
         const { stdout } = yield exec(`${scalafmtPath} ${args}`);
         core.endGroup();
+        core.info(stdout);
         return stdout;
     });
 }
