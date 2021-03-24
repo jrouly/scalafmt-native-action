@@ -1,5 +1,5 @@
-import {install} from '../src/install'
+import {scalafmt} from '../src/scalafmt'
 
-test('install', async () => {
-  await install('2.7.0')
+test('scalafmt', async () => {
+  await scalafmt('2.7.0')
 })
