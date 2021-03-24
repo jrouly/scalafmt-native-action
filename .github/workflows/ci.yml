@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run all
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macOS-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        with: # Set a custom version.
+          scalafmt-version: 2.7.0
+#      - run: scalafmt --version
+#      - run: scalafmt-native --version
