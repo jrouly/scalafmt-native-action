@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, macOS-latest, windows-latest ]
+        os: [ ubuntu-latest, macOS-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -24,5 +24,3 @@ jobs:
         with: # Exercise custom inputs.
           version: 2.7.0
           arguments: '--version'
-#      - run: scalafmt --version
-#      - run: scalafmt-native --version

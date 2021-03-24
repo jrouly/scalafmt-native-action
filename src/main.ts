@@ -5,8 +5,8 @@ async function run(): Promise<void> {
   try {
     const version: string = core.getInput('version', {required: true})
     const args: string = core.getInput('arguments', {required: true})
-    core.info(`Installing scalafmt-native ${version} ${args}`)
-    await scalafmt(version)
+
+    await scalafmt(version, args)
   } catch (error) {
     core.setFailed(error.message)
   }

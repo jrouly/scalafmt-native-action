@@ -43,8 +43,7 @@ function run() {
         try {
             const version = core.getInput('version', { required: true });
             const args = core.getInput('arguments', { required: true });
-            core.info(`Installing scalafmt-native ${version} ${args}`);
-            yield scalafmt_1.scalafmt(version);
+            yield scalafmt_1.scalafmt(version, args);
         }
         catch (error) {
             core.setFailed(error.message);
@@ -92,17 +91,47 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.scalafmt = void 0;
 const core = __importStar(__nccwpck_require__(186));
 const path = __importStar(__nccwpck_require__(622));
+const process = __importStar(__nccwpck_require__(129));
+const util = __importStar(__nccwpck_require__(669));
 const os = __importStar(__nccwpck_require__(87));
+const exec = util.promisify(process.exec);
 const homedir = os.homedir();
 const bin = path.join(homedir, 'bin');
-function scalafmt(version) {
+const scalafmtPath = path.join(bin, 'scalafmt-native');
+function scalafmt(version, args) {
     return __awaiter(this, void 0, void 0, function* () {
-        core.info(`bin directory: ${bin}`);
-        core.info(`version: ${version}`);
-        return;
+        yield setup();
+        yield install(version);
+        return yield execute(args);
     });
 }
 exports.scalafmt = scalafmt;
+function setup() {
+    return __awaiter(this, void 0, void 0, function* () {
+        core.startGroup(`Setup`);
+        yield exec(`mkdir -p ${bin}`);
+        core.endGroup();
+    });
+}
+function install(version) {
+    return __awaiter(this, void 0, void 0, function* () {
+        core.startGroup(`Install scalafmt-native:${version}`);
+        const installerUrl = 'https://raw.githubusercontent.com/scalameta/scalafmt/master/bin/install-scalafmt-native.sh';
+        const cmd = `curl -sL ${installerUrl} | bash -sv -- ${version} ${scalafmtPath}`;
+        const { stderr } = yield exec(cmd);
+        core.info(stderr);
+        core.endGroup();
+    });
+}
+function execute(args) {
+    return __awaiter(this, void 0, void 0, function* () {
+        core.startGroup(`scalafmt-native ${args}`);
+        const { stdout } = yield exec(`${scalafmtPath} ${args}`);
+        core.endGroup();
+        core.info(stdout);
+        return stdout;
+    });
+}
 
 
 /***/ }),
@@ -496,6 +525,13 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
+/***/ 129:
+/***/ ((module) => {
+
+module.exports = require("child_process");;
+
+/***/ }),
+
 /***/ 747:
 /***/ ((module) => {
 
@@ -514,6 +550,13 @@ module.exports = require("os");;
 /***/ ((module) => {
 
 module.exports = require("path");;
+
+/***/ }),
+
+/***/ 669:
+/***/ ((module) => {
+
+module.exports = require("util");;
 
 /***/ })
 
