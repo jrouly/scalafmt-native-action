@@ -92,8 +92,9 @@ const install_1 = __nccwpck_require__(39);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const version = core.getInput('scalafmt-version', { required: true });
-            core.info(`Installing scalafmt-native ${version}`);
+            const version = core.getInput('version', { required: true });
+            const args = core.getInput('arguments', { required: true });
+            core.info(`Installing scalafmt-native ${version} ${args}`);
             yield install_1.install(version);
         }
         catch (error) {

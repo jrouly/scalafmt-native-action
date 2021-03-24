@@ -29,7 +29,9 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.2.6",
+    "@types/shelljs": "^0.8.8",
+    "shelljs": "^0.8.4"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",
