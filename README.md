@@ -22,7 +22,7 @@ GitHub action to run [scalafmt-native](https://scalameta.org/scalafmt).
 #### Default usage
 
 Without any parameters, this action will run `scalafmt-native --list`.
-If any non-conforming files are presnt, this will print the list of them and exit with a failure.
+If any non-conforming files are present, they will be printed and the command will exit with a failure.
 Otherwise it will silently exit with success.
 
 ```yaml
@@ -31,5 +31,11 @@ Otherwise it will silently exit with success.
 
 #### OS compatibility
 
-scalafmt-native is [not available for Windows](https://github.com/scalameta/scalafmt/issues/1569).
+[scalafmt-native](https://scalameta.org/scalafmt) is [not available for Windows](https://github.com/scalameta/scalafmt/issues/1569).
 Can only be run on Linux and MacOS.
+
+## Credits
+
+Inspired by the design and usage patterns of [olafurpg/setup-scala](https://github.com/olafurpg/setup-scala).
+
+Similar to [openlawteam/scalafmt-ci](https://github.com/openlawteam/scalafmt-ci) but does not pin the version of the action to a specific version of scalafmt.
