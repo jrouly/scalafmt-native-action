@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm run all
+      - run: npm ci # Install dependencies.
+      - run: npm run ci # Execute CI scripts.
+      - run: git diff --exit-code # Fail if CI scripts make any source changes.
 
   test:
     strategy:
@@ -20,6 +21,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+      - run: npm ci # Install dependencies.
+      - run: npm run build # Build javascript.
+      - run: npm run package # Build action package.
       - uses: ./
         with: # Exercise custom inputs.
           version: 2.7.0
