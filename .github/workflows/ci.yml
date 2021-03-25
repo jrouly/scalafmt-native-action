@@ -2,10 +2,8 @@ name: CI
 
 on:
   push:
-    branches-ignore:
-      - release
-    tags-ignore:
-      - v*
+    branches-ignore: [ release ]
+    tags-ignore: [ v* ]
 
 jobs:
 
@@ -45,14 +43,17 @@ jobs:
         run: |
           git config --global user.name jrouly
           git config --global user.email michel@rouly.net
-      - run: |
+      - name: recreate release branch
+        run: |
           git checkout release
-          git merge main
-      - run: |
+          git reset --hard main
+      - name: create release package
+        run: |
           npm ci
           npm run build
           npm run package
-      - run: |
-          git add lib dist
-          git commit --allow-empty -m 'build new action package'
-          git push origin release
+      - name: commit and push release package
+        run: |
+          git add -f lib dist
+          git commit -m "release package"
+          git push -f origin release
