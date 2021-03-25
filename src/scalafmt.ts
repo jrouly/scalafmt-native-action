@@ -34,8 +34,14 @@ async function install(version: string): Promise<void> {
 
 async function execute(args: string): Promise<string> {
   core.startGroup(`scalafmt-native ${args}`)
-  const {stdout} = await exec(`${scalafmtPath} ${args} 2>&1`)
-  core.endGroup()
-  core.info(stdout)
-  return stdout
+  try {
+    const {stdout} = await exec(`${scalafmtPath} ${args}`)
+    core.info(stdout)
+    core.endGroup()
+    return stdout
+  } catch (error) {
+    core.error(error.stderr.toString())
+    core.endGroup()
+    return Promise.reject(error)
+  }
 }
