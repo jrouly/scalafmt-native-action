@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macOS-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci # Install dependencies.
+      - run: npm run build # Build javascript.
+      - run: npm run package # Build action package.
+      - uses: ./
+        with: # Exercise custom inputs.
+          version: 2.7.0
+          arguments: '--version'

@@ -2,6 +2,10 @@ name: CI
 
 on:
   push:
+    branches-ignore:
+      - release
+    tags-ignore:
+      - v*
 
 jobs:
 
@@ -28,3 +32,27 @@ jobs:
         with: # Exercise custom inputs.
           version: 2.7.0
           arguments: '--version'
+
+  release:
+    if: github.ref == 'refs/heads/main'
+    needs: [ build, test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: configure git
+        run: |
+          git config --global user.name jrouly
+          git config --global user.email michel@rouly.net
+      - run: |
+          git checkout release
+          git merge main
+      - run: |
+          npm ci
+          npm run build
+          npm run package
+      - run: |
+          git add lib dist
+          git commit --allow-empty -m 'build new action package'
+          git push origin release
