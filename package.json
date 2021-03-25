@@ -5,13 +5,15 @@
   "description": "GitHub action to run scalafmt-native.",
   "main": "lib/main.js",
   "scripts": {
+    "clean": "rm -rf lib dist",
     "build": "tsc",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
+    "release": "./bin/release.sh",
     "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "ci": "npm run clean && npm run build && npm run format && npm run lint && npm test"
   },
   "repository": {
     "type": "git",

@@ -20,6 +20,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run package
       - uses: ./
         with: # Exercise custom inputs.
           version: 2.7.0
