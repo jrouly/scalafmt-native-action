@@ -40,7 +40,7 @@ async function execute(args: string): Promise<string> {
     core.endGroup()
     return stdout
   } catch (error) {
-    core.error(error.stdout.toString())
+    core.info(error.stdout.toString())
     core.endGroup()
     return Promise.reject(error)
   }
