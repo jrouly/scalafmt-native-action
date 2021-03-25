@@ -11,8 +11,8 @@ inputs:
     default: '--list'
     required: false
 branding:
-  icon: 'check-circle'
-  color: 'green'
+  icon: 'code'
+  color: 'gray-dark'
 runs:
   using: node12
   main: dist/index.js
