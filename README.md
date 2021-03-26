@@ -39,3 +39,5 @@ Can only be run on Linux and MacOS.
 Inspired by the design and usage patterns of [olafurpg/setup-scala](https://github.com/olafurpg/setup-scala).
 
 Similar to [openlawteam/scalafmt-ci](https://github.com/openlawteam/scalafmt-ci) but does not pin the version of the action to a specific version of scalafmt.
+
+Similar to [AvaPL/scalafmt-native-formatter](https://github.com/AvaPL/scalafmt-native-formatter) but leverages the GitHub actions TypeScript SDK for logging and testing.
