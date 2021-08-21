@@ -1,8 +1,8 @@
 import * as core from '@actions/core'
+import * as os from 'os'
 import * as path from 'path'
 import * as process from 'child_process'
 import * as util from 'util'
-import * as os from 'os'
 
 const exec = util.promisify(process.exec)
 
