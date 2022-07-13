@@ -14,7 +14,7 @@ By using the native image, this action typically completes in two to three secon
 ## Usage
 
 ```yaml
-- uses: jrouly/scalafmt-native-action@v1
+- uses: jrouly/scalafmt-native-action@v2
   with:
     # Optional: Which version of scalafmt-native to use.
     # Default: 3.5.8
@@ -32,7 +32,7 @@ If any non-conforming files are present, they will be printed and the command wi
 Otherwise it will silently exit with success.
 
 ```yaml
-- uses: jrouly/scalafmt-native-action@v1
+- uses: jrouly/scalafmt-native-action@v2
 ```
 
 #### OS compatibility
