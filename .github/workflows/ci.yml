@@ -28,7 +28,7 @@ jobs:
       - uses: ./
         with: # Exercise custom inputs.
           version: 3.5.8
-          arguments: '--list .github/workflows/ci/Good.scala'
+          arguments: '-c .github/workflows/ci/.scalafmt.conf --list .github/workflows/ci/Good.scala'
 
   release:
     if: github.ref == 'refs/heads/main'
