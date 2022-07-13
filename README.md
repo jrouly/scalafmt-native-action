@@ -8,7 +8,7 @@ GitHub action to run [scalafmt-native](https://scalameta.org/scalafmt).
 ## Usage
 
 ```yaml
-- uses: jrouly/scalafmt-native-action@v1
+- uses: jrouly/scalafmt-native-action@v2
   with:
     # Optional: Which version of scalafmt-native to use.
     # Default: 3.5.8
@@ -26,7 +26,7 @@ If any non-conforming files are present, they will be printed and the command wi
 Otherwise it will silently exit with success.
 
 ```yaml
-- uses: jrouly/scalafmt-native-action@v1
+- uses: jrouly/scalafmt-native-action@v2
 ```
 
 #### OS compatibility
