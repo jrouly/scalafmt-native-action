@@ -4,7 +4,7 @@ author: jrouly
 inputs:
   version:
     description: The scalafmt-native version to run.
-    default: 2.7.5
+    default: 3.5.8
     required: false
   arguments:
     description: Arguments to pass to scalafmt-native.

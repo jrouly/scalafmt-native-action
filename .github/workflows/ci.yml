@@ -27,7 +27,7 @@ jobs:
       - run: npm run package # Build action package.
       - uses: ./
         with: # Exercise custom inputs.
-          version: 2.7.0
+          version: 3.5.8
           arguments: '--list .github/workflows/ci/Good.scala'
 
   release:

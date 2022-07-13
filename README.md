@@ -11,8 +11,8 @@ GitHub action to run [scalafmt-native](https://scalameta.org/scalafmt).
 - uses: jrouly/scalafmt-native-action@v1
   with:
     # Optional: Which version of scalafmt-native to use.
-    # Default: 2.7.5
-    version: '2.7.5'
+    # Default: 3.5.8
+    version: '3.5.8'
 
     # Optional: Arguments to be passed to scalafmt-native.
     # Default: --list
