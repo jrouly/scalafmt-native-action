@@ -11,7 +11,6 @@
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
-    "release": "./bin/release.sh",
     "test": "jest",
     "ci": "npm run clean && npm run build && npm run format && npm run lint && npm test"
   },
