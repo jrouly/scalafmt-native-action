@@ -5,6 +5,7 @@ on:
     types: [ created ]
 
 jobs:
+  # Runs integration tests (builds the artifact and runs it as an action).
   test:
     strategy:
       fail-fast: false
@@ -16,7 +17,18 @@ jobs:
       - run: npm ci # Install dependencies.
       - run: npm run build # Build javascript.
       - run: npm run package # Build action package.
-      - uses: ./
-        with: # Exercise custom inputs.
-          version: 2.7.0
-          arguments: '--version'
+      - name: integration test (1.5.1)
+        uses: ./
+        with:
+          version: 1.5.1
+          arguments: '--test $(pwd)/.github/workflows/ci/Good.scala'
+      - name: integration test (2.7.5)
+        uses: ./
+        with:
+          version: 2.7.5
+          arguments: '--list .github/workflows/ci/Good.scala'
+      - name: integration test (3.5.8)
+        uses: ./
+        with:
+          version: 3.5.8
+          arguments: '-c .github/workflows/ci/.scalafmt-v3.5.8.conf --list .github/workflows/ci/Good.scala'
