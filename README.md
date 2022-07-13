@@ -5,6 +5,11 @@
 
 GitHub action to run [scalafmt-native](https://scalameta.org/scalafmt).
 
+> Spend more time discussing important issues in code review and less time on code style.
+> Scalafmt formats code so that it looks consistent between people on your team.
+
+Integrate Scalafmt code formatting in your GitHub actions workflows.
+
 ## Usage
 
 ```yaml
