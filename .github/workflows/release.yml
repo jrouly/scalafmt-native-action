@@ -5,7 +5,6 @@ on:
     types: [ created ]
 
 jobs:
-
   test:
     strategy:
       fail-fast: false
@@ -13,7 +12,7 @@ jobs:
         os: [ ubuntu-latest, macOS-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: npm ci # Install dependencies.
       - run: npm run build # Build javascript.
       - run: npm run package # Build action package.
