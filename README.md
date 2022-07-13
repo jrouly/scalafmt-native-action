@@ -8,8 +8,8 @@ GitHub action to run [scalafmt-native](https://scalameta.org/scalafmt).
 > Spend more time discussing important issues in code review and less time on code style.
 > Scalafmt formats code so that it looks consistent between people on your team.
 
-Integrate Scalafmt code formatting in your GitHub actions workflows.
-By using the native image, this action typically completes in two to three seconds for moderately sized codebases.
+Integrate Scala code formatting in your GitHub actions workflows.
+By using the native scalafmt image, this action typically completes in two to three seconds for moderately sized codebases.
 
 ## Usage
 
