@@ -6,6 +6,7 @@ on:
     tags-ignore: [ v* ]
 
 jobs:
+  # Builds the artifact and runs CI (unit test, linting).
   build:
     runs-on: ubuntu-latest
     steps:
@@ -14,6 +15,7 @@ jobs:
       - run: npm run ci # Execute CI scripts.
       - run: git diff --exit-code # Fail if CI scripts make any source changes.
 
+  # Runs integration tests (builds the artifact and runs it as an action).
   test:
     strategy:
       fail-fast: false
@@ -41,6 +43,10 @@ jobs:
           version: 3.5.8
           arguments: '-c .github/workflows/ci/.scalafmt-v3.5.8.conf --list .github/workflows/ci/Good.scala'
 
+  # For any merge to main, also trigger a force push to the release branch.
+  # This creates a release candidate commit which can then be tagged and released.
+  # That commit on the release branch will not ever be merged back to main, and will be
+  # overwritten on the next merge to main. However, the tagged reference will remain accessible.
   release:
     if: github.ref == 'refs/heads/main'
     needs: [ build, test ]
