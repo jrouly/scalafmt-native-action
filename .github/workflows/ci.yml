@@ -19,18 +19,27 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, macOS-latest ]
-        scalafmt: [ 3.5.8, 2.7.5, 1.5.1 ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - run: npm ci # Install dependencies.
       - run: npm run build # Build javascript.
       - run: npm run package # Build action package.
-      - name: integration test
+      - name: integration test (1.5.1)
         uses: ./
-        with: # Exercise custom inputs.
-          version: ${{ matrix.scalafmt }}
-          arguments: '-c .github/workflows/ci/.scalafmt-v${{ matrix.scalafmt }}.conf --list .github/workflows/ci/Good.scala'
+        with:
+          version: 1.5.1
+          arguments: '--test $(pwd)/.github/workflows/ci/Good.scala'
+      - name: integration test (2.7.5)
+        uses: ./
+        with:
+          version: 2.7.5
+          arguments: '--list .github/workflows/ci/Good.scala'
+      - name: integration test (3.5.8)
+        uses: ./
+        with:
+          version: 3.5.8
+          arguments: '-c .github/workflows/ci/.scalafmt-v3.5.8.conf --list .github/workflows/ci/Good.scala'
 
   release:
     if: github.ref == 'refs/heads/main'
