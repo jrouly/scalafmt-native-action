@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
 import * as process from 'child_process'
@@ -12,6 +13,16 @@ const scalafmtPath = path.join(bin, 'scalafmt-native')
 
 export async function scalafmt(version: string, args: string): Promise<string> {
   await setup()
+  if (!version && fs.existsSync('./.scalafmt.conf')) {
+    const conf = fs.readFileSync('./.scalafmt.conf', 'utf8')
+    const v = conf.match('version\\s+=\\s+(\\S+)')
+    if (v && v.length >= 2) {
+      version = v[1]
+    }
+  }
+  if (!version) {
+    version = '3.5.8'
+  }
   await install(version)
   return await execute(args)
 }

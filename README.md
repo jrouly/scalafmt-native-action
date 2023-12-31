@@ -17,7 +17,7 @@ By using the native scalafmt image, this action typically completes in two to th
 - uses: jrouly/scalafmt-native-action@v2
   with:
     # Optional: Which version of scalafmt-native to use.
-    # Default: 3.5.8
+    # Default: read from .scalafmt.conf, otherwise '3.5.8'
     version: '3.5.8'
 
     # Optional: Arguments to be passed to scalafmt-native.
