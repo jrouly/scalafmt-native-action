@@ -17,7 +17,7 @@ By using the native scalafmt image, this action typically completes in two to th
 - uses: jrouly/scalafmt-native-action@v2
   with:
     # Optional: Which version of scalafmt-native to use.
-    # Default: 3.5.8
+    # Default: read from .scalafmt.conf, otherwise '3.5.8'
     version: '3.5.8'
 
     # Optional: Arguments to be passed to scalafmt-native.
@@ -47,3 +47,9 @@ Inspired by the design and usage patterns of [olafurpg/setup-scala](https://gith
 Similar to [openlawteam/scalafmt-ci](https://github.com/openlawteam/scalafmt-ci) but does not pin the version of the action to a specific version of scalafmt.
 
 Similar to [AvaPL/scalafmt-native-formatter](https://github.com/AvaPL/scalafmt-native-formatter) but leverages the GitHub actions TypeScript SDK for logging and testing.
+
+## Releasing
+
+Merging a branch to `main` triggers the release job from the CI workflow.
+This job builds a release candidate and force pushes a commit to the `release` branch.
+Once ready to be released, a GitHub release can be created off that branch.
