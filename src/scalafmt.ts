@@ -11,9 +11,12 @@ const homedir = os.homedir()
 const bin = path.join(homedir, 'bin')
 const scalafmtPath = path.join(bin, 'scalafmt-native')
 
+const defaultVersion = '3.5.8'
+
 export async function scalafmt(version: string, args: string): Promise<string> {
   await setup()
   if (!version && fs.existsSync('./.scalafmt.conf')) {
+    // If version is unspecified, read it from .scalafmt.conf (if present).
     const conf = fs.readFileSync('./.scalafmt.conf', 'utf8')
     const v = conf.match('version\\s+=\\s+(\\S+)')
     if (v && v.length >= 2) {
@@ -21,7 +24,7 @@ export async function scalafmt(version: string, args: string): Promise<string> {
     }
   }
   if (!version) {
-    version = '3.5.8'
+    version = defaultVersion
   }
   await install(version)
   return await execute(args)
