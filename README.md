@@ -14,11 +14,13 @@ By using the native scalafmt image, this action typically completes in two to th
 ## Usage
 
 ```yaml
-- uses: jrouly/scalafmt-native-action@v2
+- uses: jrouly/scalafmt-native-action@v3
   with:
     # Optional: Which version of scalafmt-native to use.
-    # Default: read from .scalafmt.conf, otherwise '3.5.8'
-    version: '3.5.8'
+    # Default: Read from .scalafmt.conf, otherwise '3.7.17'.
+    # Note: If .scalafmt.conf is not located in the repository root,
+    #       you must specify the version here.
+    version: '3.7.17'
 
     # Optional: Arguments to be passed to scalafmt-native.
     # Default: --list
@@ -32,7 +34,7 @@ If any non-conforming files are present, they will be printed and the command wi
 Otherwise it will silently exit with success.
 
 ```yaml
-- uses: jrouly/scalafmt-native-action@v2
+- uses: jrouly/scalafmt-native-action@v3
 ```
 
 #### OS compatibility
