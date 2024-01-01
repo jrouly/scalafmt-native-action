@@ -11,7 +11,7 @@ const homedir = os.homedir()
 const bin = path.join(homedir, 'bin')
 const scalafmtPath = path.join(bin, 'scalafmt-native')
 
-const defaultVersion = '3.5.8'
+const defaultVersion = '3.7.17'
 
 export async function scalafmt(version: string, args: string): Promise<string> {
   await setup()
