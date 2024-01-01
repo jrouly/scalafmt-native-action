@@ -42,6 +42,11 @@ jobs:
         with:
           version: 3.5.8
           arguments: '-c .github/workflows/ci/.scalafmt-v3.5.8.conf --list .github/workflows/ci/Good.scala'
+      - name: integration test (3.7.17)
+        uses: ./
+        with:
+          version: 3.7.17
+          arguments: '--list .github/workflows/ci/Good.scala'
 
   # For any merge to main, also trigger a force push to the release branch.
   # This creates a release candidate commit which can then be tagged and released.
