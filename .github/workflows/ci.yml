@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npm ci # Install dependencies.
       - run: npm run ci # Execute CI scripts.
       - run: git diff --exit-code # Fail if CI scripts make any source changes.
@@ -23,7 +23,7 @@ jobs:
         os: [ ubuntu-latest, macOS-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npm ci # Install dependencies.
       - run: npm run build # Build javascript.
       - run: npm run package # Build action package.
@@ -57,7 +57,7 @@ jobs:
     needs: [ build, test ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: configure git
