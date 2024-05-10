@@ -13,7 +13,7 @@ jobs:
         os: [ ubuntu-latest, macOS-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npm ci # Install dependencies.
       - run: npm run build # Build javascript.
       - run: npm run package # Build action package.
