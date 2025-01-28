@@ -11,6 +11,10 @@ GitHub action to run [scalafmt-native](https://scalameta.org/scalafmt).
 Integrate Scala code formatting in your GitHub actions workflows.
 By using the native scalafmt image, this action typically completes in two to three seconds for moderately sized codebases.
 
+> [!CAUTION]
+> Versions of this action prior to `v4` are likely to be broken due to changes in upstream `scalafmt-native`.
+> It is recommended to upgrade to `v4` or newer.
+
 ## Usage
 
 ```yaml
